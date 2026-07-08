@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SI Escolar | Painel do Administrador</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/administrador.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__topo">
+      <div class="sidebar__logo">SI</div>
+      <div>
+        <div class="sidebar__titulo">SI Escolar</div>
+        <div class="sidebar__subtitulo">Administrador</div>
+      </div>
+      <button class="sidebar__toggle" id="btnRecolherSidebar"><i class="fa-solid fa-angles-left"></i></button>
+    </div>
+
+    <nav class="sidebar__menu">
+      <a href="#" class="sidebar__item ativo" data-secao="dashboard"><i class="fa-solid fa-house icone"></i><span>Dashboard</span></a>
+      <a href="#" class="sidebar__item" data-secao="usuarios"><i class="fa-solid fa-users icone"></i><span>Usuários</span></a>
+      <a href="#" class="sidebar__item" data-secao="alunos"><i class="fa-solid fa-user-graduate icone"></i><span>Alunos</span></a>
+      <a href="#" class="sidebar__item" data-secao="professores"><i class="fa-solid fa-chalkboard-user icone"></i><span>Professores</span></a>
+      <a href="#" class="sidebar__item" data-secao="administradores"><i class="fa-solid fa-user-shield icone"></i><span>Administradores</span></a>
+      <a href="#" class="sidebar__item" data-secao="turmas"><i class="fa-solid fa-people-group icone"></i><span>Turmas</span></a>
+      <a href="#" class="sidebar__item" data-secao="cursos"><i class="fa-solid fa-graduation-cap icone"></i><span>Cursos</span></a>
+      <a href="#" class="sidebar__item" data-secao="relatorios"><i class="fa-solid fa-chart-column icone"></i><span>Relatórios</span></a>
+      <a href="#" class="sidebar__item" data-secao="configuracoes"><i class="fa-solid fa-gear icone"></i><span>Configurações</span></a>
+      <a href="#" class="sidebar__item" data-secao="backup"><i class="fa-solid fa-database icone"></i><span>Backup</span></a>
+    </nav>
+
+    <div class="sidebar__rodape">
+      <a href="#" class="sidebar__item" id="btnSair"><i class="fa-solid fa-right-from-bracket icone"></i><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <div class="conteudo" id="conteudo">
+
+    <header class="navbar">
+      <div class="navbar__esquerda">
+        <button class="navbar__menu-mobile" id="btnMenuMobile"><i class="fa-solid fa-bars"></i></button>
+        <span class="navbar__titulo" id="tituloSecao">Dashboard</span>
+      </div>
+      <div class="navbar__direita">
+        <div class="navbar__usuario">
+          <div class="avatar" id="avatarNavbar">A</div>
+          <div>
+            <div class="navbar__usuario-nome" id="nomeNavbar">Administrador</div>
+            <div class="navbar__usuario-tipo">Administrador</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="pagina">
+
+      <!-- DASHBOARD -->
+      <section class="secao" id="secao-dashboard">
+        <div class="pagina__cabecalho"><div><h1>Painel Administrativo</h1><p>Visão geral do sistema escolar.</p></div></div>
+
+        <div class="cards-grid">
+          <div class="card"><div class="card__topo"><div class="card__icone"><i class="fa-solid fa-user-graduate"></i></div></div><div class="card__valor" id="cardTotalAlunos">0</div><div class="card__label">Total de Alunos</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone verde"><i class="fa-solid fa-chalkboard-user"></i></div></div><div class="card__valor" id="cardTotalProfessores">0</div><div class="card__label">Total de Professores</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone laranja"><i class="fa-solid fa-user-shield"></i></div></div><div class="card__valor" id="cardTotalAdmins">0</div><div class="card__label">Total de Administradores</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone azul-claro"><i class="fa-solid fa-users"></i></div></div><div class="card__valor" id="cardTotalUsuarios">0</div><div class="card__label">Total de Usuários</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone"><i class="fa-solid fa-graduation-cap"></i></div></div><div class="card__valor" id="cardTotalCursos">0</div><div class="card__label">Cursos</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone verde"><i class="fa-solid fa-people-group"></i></div></div><div class="card__valor" id="cardTotalTurmas">0</div><div class="card__label">Turmas</div></div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Distribuição de usuários</div>
+          <div class="grafico-barras" id="graficoUsuarios"></div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Últimos cadastros</div>
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Data de cadastro</th></tr></thead>
+              <tbody id="tabelaUltimosCadastros"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- USUÁRIOS (CRUD completo, todos os tipos) -->
+      <section class="secao" id="secao-usuarios" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Usuários</h1><p>Gerencie todos os usuários do sistema.</p></div>
+          <button class="btn btn-primario" onclick="abrirModalUsuario(null,'todos')"><i class="fa-solid fa-plus"></i> Novo usuário</button>
+        </div>
+
+        <div class="filtros-barra">
+          <input class="entrada" type="text" id="pesquisaUsuarios" placeholder="Pesquisar por nome, e-mail ou CPF...">
+          <select class="entrada" id="filtroTipoUsuario">
+            <option value="todos">Todos os tipos</option>
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="administrador">Administrador</option>
+          </select>
+          <select class="entrada" id="ordenarUsuarios">
+            <option value="nome">Ordenar por nome</option>
+            <option value="recentes">Mais recentes</option>
+          </select>
+        </div>
+
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Cidade</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaUsuarios"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALUNOS -->
+      <section class="secao" id="secao-alunos" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Alunos</h1><p>Gerencie os alunos matriculados.</p></div>
+          <button class="btn btn-primario" onclick="abrirModalUsuario(null,'aluno')"><i class="fa-solid fa-plus"></i> Cadastrar aluno</button>
+        </div>
+        <div class="filtros-barra"><input class="entrada" type="text" id="pesquisaAlunosAdm" placeholder="Pesquisar aluno..."></div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Turma</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaAlunosAdm"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFESSORES -->
+      <section class="secao" id="secao-professores" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Professores</h1><p>Gerencie o corpo docente.</p></div>
+          <button class="btn btn-primario" onclick="abrirModalUsuario(null,'professor')"><i class="fa-solid fa-plus"></i> Cadastrar professor</button>
+        </div>
+        <div class="filtros-barra"><input class="entrada" type="text" id="pesquisaProfessoresAdm" placeholder="Pesquisar professor..."></div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Celular</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaProfessoresAdm"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADMINISTRADORES -->
+      <section class="secao" id="secao-administradores" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Administradores</h1><p>Gerencie os usuários com acesso total.</p></div>
+          <button class="btn btn-primario" onclick="abrirModalUsuario(null,'administrador')"><i class="fa-solid fa-plus"></i> Cadastrar administrador</button>
+        </div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Celular</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaAdminsAdm"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TURMAS -->
+      <section class="secao" id="secao-turmas" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Turmas</h1><p>Cadastre e gerencie as turmas.</p></div>
+          <button class="btn btn-primario" id="btnNovaTurma"><i class="fa-solid fa-plus"></i> Cadastrar turma</button>
+        </div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Turma</th><th>Curso</th><th>Turno</th><th>Alunos</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaTurmasAdm"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CURSOS -->
+      <section class="secao" id="secao-cursos" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Cursos</h1><p>Cadastre e gerencie os cursos oferecidos.</p></div>
+          <button class="btn btn-primario" id="btnNovoCurso"><i class="fa-solid fa-plus"></i> Cadastrar curso</button>
+        </div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Curso</th><th>Carga horária</th><th>Turmas vinculadas</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaCursosAdm"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- RELATÓRIOS -->
+      <section class="secao" id="secao-relatorios" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Relatórios</h1><p>Estatísticas gerais do sistema.</p></div></div>
+
+        <div class="cards-grid">
+          <div class="card"><div class="card__topo"><div class="card__icone"><i class="fa-solid fa-star"></i></div></div><div class="card__valor" id="relTotalNotas">0</div><div class="card__label">Notas lançadas</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone verde"><i class="fa-solid fa-calendar-check"></i></div></div><div class="card__valor" id="relMediaFreq">0%</div><div class="card__label">Frequência média geral</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone laranja"><i class="fa-solid fa-envelope"></i></div></div><div class="card__valor" id="relTotalAvisos">0</div><div class="card__label">Avisos enviados</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone azul-claro"><i class="fa-solid fa-chart-line"></i></div></div><div class="card__valor" id="relMediaGeral">0</div><div class="card__label">Média geral das notas</div></div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Avisos enviados recentemente</div>
+          <div id="listaAvisosRelatorio"></div>
+        </div>
+      </section>
+
+      <!-- CONFIGURAÇÕES -->
+      <section class="secao" id="secao-configuracoes" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Configurações</h1><p>Preferências da sua conta de administrador.</p></div></div>
+        <div class="painel">
+          <form id="formPerfilAdmin">
+            <div class="form-linha colunas-2">
+              <div class="form-grupo"><label>Telefone</label><input class="entrada" type="text" id="perfilTelefone" maxlength="15"></div>
+              <div class="form-grupo"><label>Celular</label><input class="entrada" type="text" id="perfilCelular" maxlength="15"></div>
+            </div>
+            <div class="form-grupo"><label>Nova senha (opcional)</label><input class="entrada" type="password" id="perfilSenha" placeholder="Deixe em branco para manter"></div>
+            <button type="submit" class="btn btn-primario"><i class="fa-solid fa-floppy-disk"></i> Salvar alterações</button>
+          </form>
+          <hr style="margin:22px 0; border:none; border-top:1px solid var(--cor-borda);">
+          <button class="btn btn-perigo" id="btnSairConfig"><i class="fa-solid fa-right-from-bracket"></i> Encerrar sessão</button>
+        </div>
+      </section>
+
+      <!-- BACKUP -->
+      <section class="secao" id="secao-backup" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Backup do Sistema</h1><p>Proteja e restaure os dados do LocalStorage.</p></div></div>
+
+        <div class="painel">
+          <div class="backup-grid">
+            <div class="backup-opcao">
+              <i class="fa-solid fa-download"></i>
+              <h4>Fazer Backup</h4>
+              <p>Baixa um arquivo .json com todos os dados atuais.</p>
+              <button class="btn btn-primario btn-sm btn-bloco" id="btnFazerBackup">Baixar backup</button>
+            </div>
+            <div class="backup-opcao">
+              <i class="fa-solid fa-upload"></i>
+              <h4>Restaurar Backup</h4>
+              <p>Substitui os dados atuais por um backup anterior.</p>
+              <input type="file" id="inputRestaurarBackup" accept="application/json" style="display:none;">
+              <button class="btn btn-secundario btn-sm btn-bloco" id="btnRestaurarBackup">Selecionar arquivo</button>
+            </div>
+            <div class="backup-opcao">
+              <i class="fa-solid fa-file-export"></i>
+              <h4>Exportar JSON</h4>
+              <p>Mesma função do backup, em formato de exportação.</p>
+              <button class="btn btn-secundario btn-sm btn-bloco" id="btnExportarJson">Exportar</button>
+            </div>
+            <div class="backup-opcao">
+              <i class="fa-solid fa-file-import"></i>
+              <h4>Importar JSON</h4>
+              <p>Importa um arquivo JSON previamente exportado.</p>
+              <input type="file" id="inputImportarJson" accept="application/json" style="display:none;">
+              <button class="btn btn-secundario btn-sm btn-bloco" id="btnImportarJson">Selecionar arquivo</button>
+            </div>
+          </div>
+
+          <div class="zona-perigo">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> Zona de perigo</h4>
+            <p>Esta ação apaga permanentemente todos os dados do sistema (usuários, notas, turmas, cursos, avisos). Recomendamos fazer um backup antes.</p>
+            <button class="btn btn-perigo" id="btnLimparBanco"><i class="fa-solid fa-trash"></i> Limpar banco de dados</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer-app">SI Escolar &copy; 2026 — Sistema de Gestão Escolar</footer>
+  </div>
+</div>
+
+<!-- MODAL: Usuário (cadastro/edição completo) -->
+<div class="modal-fundo" id="modalUsuario">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal__cabecalho"><h3 id="tituloModalUsuario">Novo usuário</h3><button class="modal__fechar" data-fechar="modalUsuario">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formUsuario">
+        <input type="hidden" id="usuarioId">
+        <div class="form-grupo">
+          <label>Tipo de usuário *</label>
+          <select class="entrada" id="usuarioTipo" required>
+            <option value="aluno">Aluno</option>
+            <option value="professor">Professor</option>
+            <option value="administrador">Administrador</option>
+          </select>
+        </div>
+        <div class="form-grupo"><label>Nome completo *</label><input class="entrada" type="text" id="usuarioNome" required></div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label>CPF *</label><input class="entrada" type="text" id="usuarioCpf" maxlength="14" required></div>
+          <div class="form-grupo"><label>RG *</label><input class="entrada" type="text" id="usuarioRg" maxlength="12" required></div>
+        </div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label>E-mail *</label><input class="entrada" type="email" id="usuarioEmail" required></div>
+          <div class="form-grupo"><label>Celular *</label><input class="entrada" type="text" id="usuarioCelular" maxlength="15" required></div>
+        </div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label id="labelSenhaUsuario">Senha *</label><input class="entrada" type="password" id="usuarioSenha"></div>
+          <div class="form-grupo" id="grupoTurmaUsuario">
+            <label>Turma (se aluno)</label>
+            <select class="entrada" id="usuarioTurma"><option value="">Nenhuma</option></select>
+          </div>
+        </div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label>Cidade</label><input class="entrada" type="text" id="usuarioCidade"></div>
+          <div class="form-grupo"><label>Estado</label><input class="entrada" type="text" id="usuarioEstado" maxlength="2"></div>
+        </div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalUsuario">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarUsuario">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Turma -->
+<div class="modal-fundo" id="modalTurma">
+  <div class="modal">
+    <div class="modal__cabecalho"><h3 id="tituloModalTurma">Cadastrar turma</h3><button class="modal__fechar" data-fechar="modalTurma">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formTurma">
+        <input type="hidden" id="turmaId">
+        <div class="form-grupo"><label>Nome da turma *</label><input class="entrada" type="text" id="turmaNome" required></div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label>Curso *</label><select class="entrada" id="turmaCurso" required></select></div>
+          <div class="form-grupo"><label>Turno *</label>
+            <select class="entrada" id="turmaTurno" required>
+              <option value="Manhã">Manhã</option><option value="Tarde">Tarde</option><option value="Noite">Noite</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalTurma">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarTurma">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Curso -->
+<div class="modal-fundo" id="modalCurso">
+  <div class="modal">
+    <div class="modal__cabecalho"><h3 id="tituloModalCurso">Cadastrar curso</h3><button class="modal__fechar" data-fechar="modalCurso">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formCurso">
+        <input type="hidden" id="cursoId">
+        <div class="form-grupo"><label>Nome do curso *</label><input class="entrada" type="text" id="cursoNome" required></div>
+        <div class="form-grupo"><label>Carga horária (horas) *</label><input class="entrada" type="number" id="cursoCarga" min="1" required></div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalCurso">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarCurso">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="loading-fundo" id="loadingGlobal"><div class="spinner"></div></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/banco.js"></script>
+<script src="js/administrador.js"></script>
+</body>
+</html>

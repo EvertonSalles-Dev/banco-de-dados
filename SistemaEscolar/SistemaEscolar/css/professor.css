@@ -1,0 +1,25 @@
+/* ==========================================================================
+   professor.css
+   Ajustes de estilo específicos da área do professor (professor.html).
+   ========================================================================== */
+
+.filtros-barra {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  align-items: center;
+}
+.filtros-barra .entrada { max-width: 260px; }
+.filtros-barra select.entrada { max-width: 200px; }
+
+.filtros-barra__espacador { flex: 1; }
+
+.aviso-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.aviso-item:last-child { border-bottom: none; }
+.aviso-item__titulo { font-weight: 700; color: var(--cor-primaria-escura); font-size: 0.92rem; }
+.aviso-item__texto { font-size: 0.85rem; color: var(--cor-texto-suave); margin-top: 4px; }
+.aviso-item__data { font-size: 0.72rem; color: var(--cor-texto-suave); margin-top: 6px; display: block; }

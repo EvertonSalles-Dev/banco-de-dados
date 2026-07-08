@@ -1,0 +1,119 @@
+/* ==========================================================================
+   login.css
+   Estilo exclusivo da tela de login (index.html).
+   ========================================================================== */
+
+.login-tela {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--cor-primaria-escura) 0%, var(--cor-primaria) 55%, var(--cor-secundaria) 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Formas decorativas suaves ao fundo */
+.login-tela::before, .login-tela::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+.login-tela::before { width: 420px; height: 420px; top: -140px; left: -120px; }
+.login-tela::after { width: 300px; height: 300px; bottom: -100px; right: -80px; }
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: var(--cor-superficie);
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-forte);
+  padding: 44px 38px 34px;
+  animation: apareceCard 0.6s ease;
+}
+
+@keyframes apareceCard {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.login-card__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.login-card__logo-icone {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.7rem; font-weight: 800;
+  box-shadow: var(--sombra-media);
+}
+
+.login-card__titulo { font-size: 1.35rem; font-weight: 800; color: var(--cor-primaria-escura); }
+.login-card__subtitulo { font-size: 0.85rem; color: var(--cor-texto-suave); text-align: center; margin-bottom: 26px; }
+
+.login-form .form-grupo { margin-bottom: 18px; }
+
+.login-form .campo-icone {
+  position: relative;
+}
+.login-form .campo-icone i {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--cor-texto-suave);
+}
+.login-form .campo-icone input.entrada { padding-left: 40px; }
+
+.login-form__opcoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  margin-bottom: 22px;
+  color: var(--cor-texto-suave);
+}
+
+.checkbox-lembrar { display: flex; align-items: center; gap: 8px; }
+.checkbox-lembrar input { accent-color: var(--cor-primaria); width: 15px; height: 15px; }
+
+.login-form__opcoes a { color: var(--cor-primaria); font-weight: 600; }
+.login-form__opcoes a:hover { text-decoration: underline; }
+
+.login-card__rodape {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+.login-card__rodape a { color: var(--cor-primaria); font-weight: 700; }
+.login-card__rodape a:hover { text-decoration: underline; }
+
+.login-card__contas-teste {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: var(--cor-fundo);
+  border-radius: var(--raio-sm);
+  font-size: 0.76rem;
+  color: var(--cor-texto-suave);
+  line-height: 1.6;
+}
+.login-card__contas-teste strong { color: var(--cor-texto); }
+
+.shake { animation: balancar 0.4s ease; }
+@keyframes balancar {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@media (max-width: 480px) {
+  .login-card { padding: 34px 24px 26px; }
+}
