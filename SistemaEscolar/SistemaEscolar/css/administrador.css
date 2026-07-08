@@ -62,3 +62,19 @@
 }
 .zona-perigo h4 { color: var(--cor-erro); margin-bottom: 8px; }
 .zona-perigo p { font-size: 0.85rem; color: var(--cor-texto-suave); margin-bottom: 14px; }
+.relatorios__acoes {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-bottom: 12px;
+}
+
+.relatorios__acoes .btn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.remover {
+  display: flex;
+}

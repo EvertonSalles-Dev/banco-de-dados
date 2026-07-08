@@ -252,6 +252,8 @@ input, select, textarea { font-family: inherit; }
   margin-bottom: 16px;
   font-weight: 700;
   display: flex; align-items: center; justify-content: space-between;
+  position: relative;
+  top: -60px;
 }
 
 /* ================================ TABELAS ================================= */

@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarCursosAdm();
   carregarRelatorios();
   carregarPerfil();
+
+  configurarBotoesRelatorios();
 });
 
 /* ------------------------------ Sidebar / navbar --------------------------- */
@@ -446,6 +448,20 @@ function excluirCurso(id) {
 }
 
 /* ================================== RELATÓRIOS =================================== */
+function configurarBotoesRelatorios() {
+  const btn = document.getElementById("btnRemoverAvisos");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    uiConfirmar("Deseja realmente apagar TODOS os avisos? Esta ação não pode ser desfeita.", () => {
+      const avisos = avisoListar();
+      avisos.forEach(a => avisoExcluir(a.id));
+      uiToast("sucesso", "Avisos apagados com sucesso.");
+      atualizarTudo();
+    });
+  });
+}
+
 function carregarRelatorios() {
   const notas = notaListarTodas();
   const alunos = usuarioPesquisar("", "aluno");
