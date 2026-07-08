@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escolar | Área do Professor</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/professor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__topo">
+      <div class="sidebar__logo">S.E</div>
+      <div>
+        <div class="sidebar__titulo">Escolar</div>
+        <div class="sidebar__subtitulo">Área do Professor</div>
+      </div>
+      <button class="sidebar__toggle" id="btnRecolherSidebar"><i class="fa-solid fa-angles-left"></i></button>
+    </div>
+
+    <nav class="sidebar__menu">
+      <a href="#" class="sidebar__item ativo" data-secao="dashboard"><i class="fa-solid fa-house icone"></i><span>Dashboard</span></a>
+      <a href="#" class="sidebar__item" data-secao="alunos"><i class="fa-solid fa-user-graduate icone"></i><span>Alunos</span></a>
+      <a href="#" class="sidebar__item" data-secao="turmas"><i class="fa-solid fa-people-group icone"></i><span>Turmas</span></a>
+      <a href="#" class="sidebar__item" data-secao="notas"><i class="fa-solid fa-star icone"></i><span>Notas</span></a>
+      <a href="#" class="sidebar__item" data-secao="frequencia"><i class="fa-solid fa-calendar-check icone"></i><span>Frequência</span></a>
+      <a href="#" class="sidebar__item" data-secao="mensagens"><i class="fa-solid fa-envelope icone"></i><span>Mensagens</span></a>
+      <a href="#" class="sidebar__item" data-secao="perfil"><i class="fa-solid fa-user icone"></i><span>Perfil</span></a>
+      <a href="#" class="sidebar__item" data-secao="configuracoes"><i class="fa-solid fa-gear icone"></i><span>Configurações</span></a>
+    </nav>
+
+    <div class="sidebar__rodape">
+      <a href="#" class="sidebar__item" id="btnSair"><i class="fa-solid fa-right-from-bracket icone"></i><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <div class="conteudo" id="conteudo">
+
+    <header class="navbar">
+      <div class="navbar__esquerda">
+        <button class="navbar__menu-mobile" id="btnMenuMobile"><i class="fa-solid fa-bars"></i></button>
+        <span class="navbar__titulo" id="tituloSecao">Dashboard</span>
+      </div>
+      <div class="navbar__direita">
+        <div class="navbar__usuario">
+          <div class="avatar" id="avatarNavbar">P</div>
+          <div>
+            <div class="navbar__usuario-nome" id="nomeNavbar">Professor</div>
+            <div class="navbar__usuario-tipo">Professor</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="pagina">
+
+      <!-- DASHBOARD -->
+      <section class="secao" id="secao-dashboard">
+        <div class="pagina__cabecalho"><div><h1>Bem-vindo(a), <span id="saudacaoNome">Professor</span></h1><p>Resumo das suas turmas e disciplinas.</p></div></div>
+
+        <div class="cards-grid">
+          <div class="card"><div class="card__topo"><div class="card__icone"><i class="fa-solid fa-user-graduate"></i></div></div><div class="card__valor" id="cardTotalAlunos">0</div><div class="card__label">Alunos</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone verde"><i class="fa-solid fa-people-group"></i></div></div><div class="card__valor" id="cardTotalTurmas">0</div><div class="card__label">Turmas</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone laranja"><i class="fa-solid fa-book"></i></div></div><div class="card__valor" id="cardTotalDisciplinas">0</div><div class="card__label">Disciplinas</div></div>
+          <div class="card"><div class="card__topo"><div class="card__icone azul-claro"><i class="fa-solid fa-star"></i></div></div><div class="card__valor" id="cardTotalNotas">0</div><div class="card__label">Notas lançadas</div></div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Meus alunos (visão geral)</div>
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>Turma</th><th>Média</th><th>Frequência</th></tr></thead>
+              <tbody id="tabelaResumoAlunos"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALUNOS -->
+      <section class="secao" id="secao-alunos" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Alunos</h1><p>Visualize e pesquise os alunos das suas turmas.</p></div></div>
+
+        <div class="filtros-barra">
+          <input class="entrada" type="text" id="pesquisaAlunos" placeholder="Pesquisar por nome ou e-mail...">
+        </div>
+
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Nome</th><th>E-mail</th><th>Turma</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaAlunos"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TURMAS -->
+      <section class="secao" id="secao-turmas" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Turmas</h1><p>Turmas em que você leciona.</p></div></div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Turma</th><th>Curso</th><th>Turno</th><th>Alunos</th></tr></thead>
+              <tbody id="tabelaTurmasProfessor"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTAS -->
+      <section class="secao" id="secao-notas" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Notas</h1><p>Cadastre, edite e exclua notas dos alunos.</p></div>
+          <button class="btn btn-primario" id="btnNovaNota"><i class="fa-solid fa-plus"></i> Lançar nota</button>
+        </div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Aluno</th><th>Disciplina</th><th>Bimestre</th><th>Nota</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaNotasProfessor"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- FREQUÊNCIA -->
+      <section class="secao" id="secao-frequencia" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Frequência</h1><p>Lance a presença dos alunos por disciplina e data.</p></div>
+          <button class="btn btn-primario" id="btnNovaFrequencia"><i class="fa-solid fa-plus"></i> Lançar frequência</button>
+        </div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Aluno</th><th>Disciplina</th><th>Data</th><th>Situação</th><th>Ações</th></tr></thead>
+              <tbody id="tabelaFrequenciaProfessor"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENSAGENS -->
+      <section class="secao" id="secao-mensagens" style="display:none;">
+        <div class="pagina__cabecalho">
+          <div><h1>Mensagens</h1><p>Envie avisos para os alunos.</p></div>
+          <button class="btn btn-primario" id="btnNovoAviso"><i class="fa-solid fa-plus"></i> Novo aviso</button>
+        </div>
+        <div class="painel">
+          <div id="listaAvisosProfessor"></div>
+        </div>
+      </section>
+
+      <!-- PERFIL -->
+      <section class="secao" id="secao-perfil" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Meu Perfil</h1><p>Atualize suas informações pessoais.</p></div></div>
+        <div class="painel">
+          <form id="formPerfilProfessor">
+            <div class="form-linha colunas-2">
+              <div class="form-grupo"><label>Telefone</label><input class="entrada" type="text" id="perfilTelefone" maxlength="15"></div>
+              <div class="form-grupo"><label>Celular</label><input class="entrada" type="text" id="perfilCelular" maxlength="15"></div>
+            </div>
+            <div class="form-linha colunas-2">
+              <div class="form-grupo"><label>Endereço</label><input class="entrada" type="text" id="perfilEndereco"></div>
+              <div class="form-grupo"><label>Nova senha (opcional)</label><input class="entrada" type="password" id="perfilSenha" placeholder="Deixe em branco para manter"></div>
+            </div>
+            <button type="submit" class="btn btn-primario"><i class="fa-solid fa-floppy-disk"></i> Salvar alterações</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- CONFIGURAÇÕES -->
+      <section class="secao" id="secao-configuracoes" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Configurações</h1><p>Preferências da sua conta.</p></div></div>
+        <div class="painel">
+          <button class="btn btn-perigo" id="btnSairConfig"><i class="fa-solid fa-right-from-bracket"></i> Encerrar sessão</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer-app">SI Escolar &copy; 2026 — Sistema de Gestão Escolar</footer>
+  </div>
+</div>
+
+<!-- MODAL: Nota -->
+<div class="modal-fundo" id="modalNota">
+  <div class="modal">
+    <div class="modal__cabecalho"><h3 id="tituloModalNota">Lançar nota</h3><button class="modal__fechar" data-fechar="modalNota">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formNota">
+        <input type="hidden" id="notaId">
+        <div class="form-grupo">
+          <label for="notaAluno">Aluno *</label>
+          <select class="entrada" id="notaAluno" required></select>
+        </div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label for="notaDisciplina">Disciplina *</label><input class="entrada" type="text" id="notaDisciplina" required></div>
+          <div class="form-grupo"><label for="notaBimestre">Bimestre *</label>
+            <select class="entrada" id="notaBimestre" required>
+              <option value="1">1º Bimestre</option><option value="2">2º Bimestre</option>
+              <option value="3">3º Bimestre</option><option value="4">4º Bimestre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grupo">
+          <label for="notaValor">Nota (0 a 10) *</label>
+          <input class="entrada" type="number" id="notaValor" min="0" max="10" step="0.1" required>
+        </div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalNota">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarNota">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Frequência -->
+<div class="modal-fundo" id="modalFrequencia">
+  <div class="modal">
+    <div class="modal__cabecalho"><h3>Lançar frequência</h3><button class="modal__fechar" data-fechar="modalFrequencia">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formFrequencia">
+        <div class="form-grupo">
+          <label for="freqAluno">Aluno *</label>
+          <select class="entrada" id="freqAluno" required></select>
+        </div>
+        <div class="form-linha colunas-2">
+          <div class="form-grupo"><label for="freqDisciplina">Disciplina *</label><input class="entrada" type="text" id="freqDisciplina" required></div>
+          <div class="form-grupo"><label for="freqData">Data *</label><input class="entrada" type="date" id="freqData" required></div>
+        </div>
+        <div class="form-grupo">
+          <label for="freqSituacao">Situação *</label>
+          <select class="entrada" id="freqSituacao" required>
+            <option value="true">Presente</option>
+            <option value="false">Falta</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalFrequencia">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarFrequencia">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Aviso -->
+<div class="modal-fundo" id="modalAviso">
+  <div class="modal">
+    <div class="modal__cabecalho"><h3>Novo aviso</h3><button class="modal__fechar" data-fechar="modalAviso">&times;</button></div>
+    <div class="modal__corpo">
+      <form id="formAviso">
+        <div class="form-grupo"><label for="avisoTitulo">Título *</label><input class="entrada" type="text" id="avisoTitulo" required></div>
+        <div class="form-grupo"><label for="avisoMensagem">Mensagem *</label><textarea class="entrada" id="avisoMensagem" rows="4" required></textarea></div>
+      </form>
+    </div>
+    <div class="modal__rodape">
+      <button class="btn btn-secundario" data-fechar="modalAviso">Cancelar</button>
+      <button class="btn btn-primario" id="btnSalvarAviso">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<div class="loading-fundo" id="loadingGlobal"><div class="spinner"></div></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/banco.js"></script>
+<script src="js/professor.js"></script>
+</body>
+</html>

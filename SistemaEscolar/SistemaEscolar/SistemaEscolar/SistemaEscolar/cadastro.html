@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SI Escolar | Cadastro</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/cadastro.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<main class="cadastro-tela">
+  <section class="cadastro-card">
+
+    <div class="cadastro-cabecalho">
+      <div class="login-card__logo-icone">SI</div>
+      <h1>Criar cadastro</h1>
+    </div>
+    <p class="cadastro-subtitulo">Preencha os dados abaixo para se cadastrar no SI Escolar.</p>
+
+    <div class="alerta-caixa erro" id="alertaCadastro" style="display:none;" role="alert"></div>
+
+    <form id="formCadastro" novalidate>
+
+      <!-- Tipo de usuário -->
+      <div class="cadastro-secao">
+        <h2 class="cadastro-secao__titulo"><i class="fa-solid fa-user-tag"></i> Tipo de usuário</h2>
+        <div class="tipo-usuario-grid">
+          <div class="tipo-usuario-opcao">
+            <input type="radio" name="tipo" id="tipoAluno" value="aluno" checked>
+            <label for="tipoAluno"><i class="fa-solid fa-user-graduate"></i> Aluno</label>
+          </div>
+          <div class="tipo-usuario-opcao">
+            <input type="radio" name="tipo" id="tipoProfessor" value="professor">
+            <label for="tipoProfessor"><i class="fa-solid fa-chalkboard-user"></i> Professor</label>
+          </div>
+          <div class="tipo-usuario-opcao">
+            <input type="radio" name="tipo" id="tipoAdministrador" value="administrador">
+            <label for="tipoAdministrador"><i class="fa-solid fa-user-shield"></i> Administrador</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dados pessoais -->
+      <div class="cadastro-secao">
+        <h2 class="cadastro-secao__titulo"><i class="fa-solid fa-id-card"></i> Dados pessoais</h2>
+
+        <div class="form-grupo">
+          <label for="nome">Nome completo *</label>
+          <input class="entrada" type="text" id="nome" placeholder="Digite o nome completo" required>
+          <span class="mensagem-erro" id="erro-nome"></span>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="cpf">CPF *</label>
+            <input class="entrada" type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+            <span class="mensagem-erro" id="erro-cpf"></span>
+          </div>
+          <div class="form-grupo">
+            <label for="rg">RG *</label>
+            <input class="entrada" type="text" id="rg" placeholder="00.000.000-0" maxlength="12" required>
+            <span class="mensagem-erro" id="erro-rg"></span>
+          </div>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="nascimento">Data de nascimento *</label>
+            <input class="entrada" type="date" id="nascimento" required>
+            <span class="mensagem-erro" id="erro-nascimento"></span>
+          </div>
+          <div class="form-grupo">
+            <label for="sexo">Sexo *</label>
+            <select class="entrada" id="sexo" required>
+              <option value="">Selecione...</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+              <option value="Outro">Outro</option>
+            </select>
+            <span class="mensagem-erro" id="erro-sexo"></span>
+          </div>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="telefone">Telefone</label>
+            <input class="entrada" type="text" id="telefone" placeholder="(00) 0000-0000" maxlength="15">
+          </div>
+          <div class="form-grupo">
+            <label for="celular">Celular *</label>
+            <input class="entrada" type="text" id="celular" placeholder="(00) 00000-0000" maxlength="15" required>
+            <span class="mensagem-erro" id="erro-celular"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acesso -->
+      <div class="cadastro-secao">
+        <h2 class="cadastro-secao__titulo"><i class="fa-solid fa-key"></i> Dados de acesso</h2>
+
+        <div class="form-grupo">
+          <label for="email">E-mail *</label>
+          <input class="entrada" type="email" id="email" placeholder="seu@email.com" required>
+          <span class="mensagem-erro" id="erro-email"></span>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="senha">Senha *</label>
+            <div class="senha-wrapper">
+              <input class="entrada" type="password" id="senha" placeholder="Mínimo 6 caracteres" required>
+              <button type="button" class="alternar-senha" data-alvo="senha"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <span class="mensagem-erro" id="erro-senha"></span>
+          </div>
+          <div class="form-grupo">
+            <label for="confirmarSenha">Confirmar senha *</label>
+            <div class="senha-wrapper">
+              <input class="entrada" type="password" id="confirmarSenha" placeholder="Repita a senha" required>
+              <button type="button" class="alternar-senha" data-alvo="confirmarSenha"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <span class="mensagem-erro" id="erro-confirmarSenha"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Endereço -->
+      <div class="cadastro-secao">
+        <h2 class="cadastro-secao__titulo"><i class="fa-solid fa-location-dot"></i> Endereço</h2>
+
+        <div class="form-linha colunas-3">
+          <div class="form-grupo" style="grid-column: span 2;">
+            <label for="endereco">Endereço *</label>
+            <input class="entrada" type="text" id="endereco" placeholder="Rua, Avenida..." required>
+          </div>
+          <div class="form-grupo">
+            <label for="numero">Número *</label>
+            <input class="entrada" type="text" id="numero" placeholder="Nº" required>
+          </div>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="bairro">Bairro *</label>
+            <input class="entrada" type="text" id="bairro" placeholder="Bairro" required>
+          </div>
+          <div class="form-grupo">
+            <label for="cep">CEP *</label>
+            <input class="entrada" type="text" id="cep" placeholder="00000-000" maxlength="9" required>
+          </div>
+        </div>
+
+        <div class="form-linha colunas-2">
+          <div class="form-grupo">
+            <label for="cidade">Cidade *</label>
+            <input class="entrada" type="text" id="cidade" placeholder="Cidade" required>
+          </div>
+          <div class="form-grupo">
+            <label for="estado">Estado *</label>
+            <select class="entrada" id="estado" required>
+              <option value="">UF</option>
+              <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+              <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+              <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+              <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+              <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+              <option>SE</option><option>TO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="cadastro-rodape-botoes">
+        <button type="button" class="btn btn-secundario" onclick="window.location.href='index.html'">
+          <i class="fa-solid fa-arrow-left"></i> Voltar
+        </button>
+        <button type="submit" class="btn btn-primario">
+          <i class="fa-solid fa-user-plus"></i> Cadastrar
+        </button>
+      </div>
+    </form>
+
+    <p class="cadastro-login-link">Já tem uma conta? <a href="index.html">Fazer login</a></p>
+  </section>
+</main>
+
+<div class="loading-fundo" id="loadingGlobal"><div class="spinner"></div></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/banco.js"></script>
+<script src="js/cadastro.js"></script>
+</body>
+</html>

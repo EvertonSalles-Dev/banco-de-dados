@@ -1,0 +1,57 @@
+/* ==========================================================================
+   aluno.css
+   Ajustes de estilo específicos da área do aluno (aluno.html).
+   ========================================================================== */
+
+.perfil-topo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.perfil-avatar-grande {
+  width: 84px; height: 84px; border-radius: 50%;
+  background: var(--cor-primaria);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 800;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  box-shadow: var(--sombra-media);
+}
+
+.perfil-info h2 { color: var(--cor-primaria-escura); font-size: 1.2rem; }
+.perfil-info p { color: var(--cor-texto-suave); font-size: 0.88rem; margin-top: 2px; }
+
+.disciplina-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cor-primaria-escura);
+}
+
+.aula-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.aula-item:last-child { border-bottom: none; }
+.aula-item__horario {
+  width: 56px; text-align: center;
+  font-weight: 700; color: var(--cor-primaria);
+  font-size: 0.85rem;
+}
+.aula-item__info strong { font-size: 0.9rem; }
+.aula-item__info span { font-size: 0.78rem; color: var(--cor-texto-suave); }
+
+.frequencia-resumo { display: flex; align-items: center; gap: 16px; }
+.frequencia-resumo .percentual { font-size: 1.6rem; font-weight: 800; color: var(--cor-primaria-escura); }

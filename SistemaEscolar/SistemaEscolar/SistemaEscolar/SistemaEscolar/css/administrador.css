@@ -1,0 +1,80 @@
+/* ==========================================================================
+   administrador.css
+   Ajustes de estilo específicos do painel do administrador (administrador.html).
+   ========================================================================== */
+
+.filtros-barra {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  align-items: center;
+}
+.filtros-barra .entrada { max-width: 260px; }
+.filtros-barra select.entrada { max-width: 180px; }
+
+.grafico-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  height: 200px;
+  padding: 10px 6px 0;
+}
+.grafico-barras__coluna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 100%;
+}
+.grafico-barras__valor { font-weight: 800; color: var(--cor-primaria-escura); font-size: 0.95rem; }
+.grafico-barras__barra {
+  width: 100%;
+  max-width: 60px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, var(--cor-secundaria), var(--cor-primaria));
+  transition: height 0.6s ease;
+}
+.grafico-barras__label { font-size: 0.78rem; color: var(--cor-texto-suave); font-weight: 600; }
+
+.backup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.backup-opcao {
+  border: 1.5px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: 20px;
+  text-align: center;
+}
+.backup-opcao i { font-size: 1.8rem; color: var(--cor-primaria); margin-bottom: 10px; }
+.backup-opcao h4 { font-size: 0.95rem; margin-bottom: 6px; color: var(--cor-texto); }
+.backup-opcao p { font-size: 0.78rem; color: var(--cor-texto-suave); margin-bottom: 14px; min-height: 32px; }
+
+.zona-perigo {
+  border: 1.5px dashed var(--cor-erro);
+  border-radius: var(--raio-md);
+  padding: 20px;
+  margin-top: 20px;
+}
+.zona-perigo h4 { color: var(--cor-erro); margin-bottom: 8px; }
+.zona-perigo p { font-size: 0.85rem; color: var(--cor-texto-suave); margin-bottom: 14px; }
+.relatorios__acoes {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-bottom: 12px;
+}
+
+.relatorios__acoes .btn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.remover {
+  display: flex;
+}

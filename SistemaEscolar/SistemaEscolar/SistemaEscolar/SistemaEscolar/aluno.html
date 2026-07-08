@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SI Escolar | Área do Aluno</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/aluno.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__topo">
+      <div class="sidebar__logo">SI</div>
+      <div>
+        <div class="sidebar__titulo">SI Escolar</div>
+        <div class="sidebar__subtitulo">Área do Aluno</div>
+      </div>
+      <button class="sidebar__toggle" id="btnRecolherSidebar"><i class="fa-solid fa-angles-left"></i></button>
+    </div>
+
+    <nav class="sidebar__menu">
+      <a href="#" class="sidebar__item ativo" data-secao="inicio"><i class="fa-solid fa-house icone"></i><span>Início</span></a>
+      <a href="#" class="sidebar__item" data-secao="perfil"><i class="fa-solid fa-user icone"></i><span>Meu Perfil</span></a>
+      <a href="#" class="sidebar__item" data-secao="notas"><i class="fa-solid fa-star icone"></i><span>Minhas Notas</span></a>
+      <a href="#" class="sidebar__item" data-secao="frequencia"><i class="fa-solid fa-calendar-check icone"></i><span>Minha Frequência</span></a>
+      <a href="#" class="sidebar__item" data-secao="disciplinas"><i class="fa-solid fa-book icone"></i><span>Disciplinas</span></a>
+      <a href="#" class="sidebar__item" data-secao="horarios"><i class="fa-solid fa-clock icone"></i><span>Horários</span></a>
+      <a href="#" class="sidebar__item" data-secao="mensagens"><i class="fa-solid fa-envelope icone"></i><span>Mensagens</span></a>
+      <a href="#" class="sidebar__item" data-secao="configuracoes"><i class="fa-solid fa-gear icone"></i><span>Configurações</span></a>
+    </nav>
+
+    <div class="sidebar__rodape">
+      <a href="#" class="sidebar__item" id="btnSair"><i class="fa-solid fa-right-from-bracket icone"></i><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <div class="conteudo" id="conteudo">
+
+    <header class="navbar">
+      <div class="navbar__esquerda">
+        <button class="navbar__menu-mobile" id="btnMenuMobile"><i class="fa-solid fa-bars"></i></button>
+        <span class="navbar__titulo" id="tituloSecao">Início</span>
+      </div>
+      <div class="navbar__direita">
+        <div class="navbar__usuario">
+          <div class="avatar" id="avatarNavbar">A</div>
+          <div>
+            <div class="navbar__usuario-nome" id="nomeNavbar">Aluno</div>
+            <div class="navbar__usuario-tipo">Aluno</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="pagina">
+
+      <!-- SEÇÃO: INÍCIO -->
+      <section class="secao" id="secao-inicio">
+        <div class="pagina__cabecalho">
+          <div>
+            <h1>Olá, <span id="saudacaoNome">Aluno</span> 👋</h1>
+            <p>Confira um resumo do seu desempenho acadêmico.</p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card__topo"><div class="card__icone azul-claro"><i class="fa-solid fa-graduation-cap"></i></div></div>
+            <div class="card__valor" id="cardCurso">-</div>
+            <div class="card__label">Curso</div>
+          </div>
+          <div class="card">
+            <div class="card__topo"><div class="card__icone"><i class="fa-solid fa-people-group"></i></div></div>
+            <div class="card__valor" id="cardTurma">-</div>
+            <div class="card__label">Turma</div>
+          </div>
+          <div class="card">
+            <div class="card__topo"><div class="card__icone verde"><i class="fa-solid fa-star"></i></div></div>
+            <div class="card__valor" id="cardMedia">-</div>
+            <div class="card__label">Média Geral</div>
+          </div>
+          <div class="card">
+            <div class="card__topo"><div class="card__icone laranja"><i class="fa-solid fa-calendar-check"></i></div></div>
+            <div class="card__valor" id="cardFrequencia">-</div>
+            <div class="card__label">Frequência</div>
+          </div>
+          <div class="card">
+            <div class="card__topo"><div class="card__icone"><i class="fa-solid fa-book"></i></div></div>
+            <div class="card__valor" id="cardQtdDisciplinas">-</div>
+            <div class="card__label">Disciplinas</div>
+          </div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Próximas aulas</div>
+          <div id="listaProximasAulas"></div>
+        </div>
+
+        <div class="painel">
+          <div class="painel__titulo">Tabela de notas</div>
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Disciplina</th><th>Bimestre</th><th>Nota</th><th>Situação</th></tr></thead>
+              <tbody id="tabelaNotasInicio"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: PERFIL -->
+      <section class="secao" id="secao-perfil" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Meu Perfil</h1><p>Atualize suas informações pessoais.</p></div></div>
+
+        <div class="painel">
+          <div class="perfil-topo" style="margin-bottom:24px;">
+            <div class="perfil-avatar-grande" id="avatarPerfilGrande">A</div>
+            <div class="perfil-info">
+              <h2 id="perfilNomeCompleto">-</h2>
+              <p id="perfilEmailTexto">-</p>
+            </div>
+          </div>
+
+          <form id="formPerfilAluno">
+            <div class="form-linha colunas-2">
+              <div class="form-grupo">
+                <label>Telefone</label>
+                <input class="entrada" type="text" id="perfilTelefone" maxlength="15">
+              </div>
+              <div class="form-grupo">
+                <label>Celular</label>
+                <input class="entrada" type="text" id="perfilCelular" maxlength="15">
+              </div>
+            </div>
+            <div class="form-linha colunas-2">
+              <div class="form-grupo">
+                <label>Endereço</label>
+                <input class="entrada" type="text" id="perfilEndereco">
+              </div>
+              <div class="form-grupo">
+                <label>Nova senha (opcional)</label>
+                <input class="entrada" type="password" id="perfilSenha" placeholder="Deixe em branco para manter">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primario"><i class="fa-solid fa-floppy-disk"></i> Salvar alterações</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: NOTAS -->
+      <section class="secao" id="secao-notas" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Minhas Notas</h1><p>Acompanhe suas notas por disciplina e bimestre.</p></div></div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Disciplina</th><th>Bimestre</th><th>Nota</th><th>Situação</th></tr></thead>
+              <tbody id="tabelaNotasCompleta"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: FREQUÊNCIA -->
+      <section class="secao" id="secao-frequencia" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Minha Frequência</h1><p>Percentual de presença registrado pelos professores.</p></div></div>
+
+        <div class="painel">
+          <div class="frequencia-resumo" style="margin-bottom:16px;">
+            <span class="percentual" id="frequenciaPercentualGrande">-</span>
+            <div class="barra-progresso" style="flex:1;"><div class="barra-progresso__interna" id="barraFrequencia"></div></div>
+          </div>
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Data</th><th>Disciplina</th><th>Situação</th></tr></thead>
+              <tbody id="tabelaFrequencia"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: DISCIPLINAS -->
+      <section class="secao" id="secao-disciplinas" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Disciplinas</h1><p>Disciplinas cursadas no período atual.</p></div></div>
+        <div class="painel">
+          <div id="listaDisciplinas" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: HORÁRIOS -->
+      <section class="secao" id="secao-horarios" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Horários</h1><p>Sua grade de horário semanal.</p></div></div>
+        <div class="painel">
+          <div class="tabela-wrapper">
+            <table class="tabela-moderna">
+              <thead><tr><th>Dia</th><th>1º Horário</th><th>2º Horário</th><th>3º Horário</th></tr></thead>
+              <tbody id="tabelaHorarios"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: MENSAGENS -->
+      <section class="secao" id="secao-mensagens" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Mensagens</h1><p>Avisos enviados pela escola.</p></div></div>
+        <div class="painel">
+          <div id="listaAvisosAluno"></div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: CONFIGURAÇÕES -->
+      <section class="secao" id="secao-configuracoes" style="display:none;">
+        <div class="pagina__cabecalho"><div><h1>Configurações</h1><p>Preferências da sua conta.</p></div></div>
+        <div class="painel">
+          <p style="color:var(--cor-texto-suave); font-size:0.9rem; margin-bottom:16px;">
+            Para alterar dados pessoais, acesse "Meu Perfil".
+          </p>
+          <button class="btn btn-perigo" id="btnSairConfig"><i class="fa-solid fa-right-from-bracket"></i> Encerrar sessão</button>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer-app">SI Escolar &copy; 2026 — Sistema de Gestão Escolar</footer>
+  </div>
+</div>
+
+<div class="loading-fundo" id="loadingGlobal"><div class="spinner"></div></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/banco.js"></script>
+<script src="js/aluno.js"></script>
+</body>
+</html>

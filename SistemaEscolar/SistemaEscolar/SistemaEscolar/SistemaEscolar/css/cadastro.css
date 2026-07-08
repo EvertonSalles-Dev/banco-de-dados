@@ -1,0 +1,101 @@
+/* ==========================================================================
+   cadastro.css
+   Estilo exclusivo da tela de cadastro (cadastro.html).
+   ========================================================================== */
+
+.cadastro-tela {
+  min-height: 100vh;
+  background: var(--cor-fundo);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cadastro-card {
+  width: 100%;
+  max-width: 860px;
+  background: var(--cor-superficie);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-media);
+  padding: 36px 40px 30px;
+  animation: apareceCadastro 0.5s ease;
+}
+
+@keyframes apareceCadastro {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cadastro-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cadastro-cabecalho .login-card__logo-icone { width: 50px; height: 50px; font-size: 1.3rem; }
+.cadastro-cabecalho h1 { font-size: 1.35rem; color: var(--cor-primaria-escura); }
+.cadastro-subtitulo { color: var(--cor-texto-suave); font-size: 0.88rem; margin-bottom: 26px; }
+
+.cadastro-secao { margin-bottom: 26px; }
+.cadastro-secao__titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--cor-borda);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.tipo-usuario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.tipo-usuario-opcao {
+  position: relative;
+}
+.tipo-usuario-opcao input { position: absolute; opacity: 0; }
+.tipo-usuario-opcao label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 10px;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  cursor: pointer;
+  transition: all var(--transicao);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+.tipo-usuario-opcao label i { font-size: 1.4rem; color: var(--cor-primaria); }
+.tipo-usuario-opcao input:checked + label {
+  border-color: var(--cor-primaria);
+  background: #E4EEFF;
+  color: var(--cor-primaria-escura);
+}
+
+.cadastro-rodape-botoes {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+.cadastro-rodape-botoes .btn { flex: 1; }
+
+.cadastro-login-link {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+.cadastro-login-link a { color: var(--cor-primaria); font-weight: 700; }
+
+@media (max-width: 640px) {
+  .cadastro-card { padding: 26px 20px 22px; }
+  .tipo-usuario-grid { grid-template-columns: 1fr; }
+  .cadastro-rodape-botoes { flex-direction: column-reverse; }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escolar | Login</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- Tela de login -->
+<main class="login-tela">
+  <section class="login-card" aria-labelledby="tituloLogin">
+
+    <div class="login-card__logo">
+      <div class="login-card__logo-icone">SI</div>
+      <h1 class="login-card__titulo" id="tituloLogin">Escolar</h1>
+    </div>
+    <p class="login-card__subtitulo">Sistema de gestão escolar</p>
+
+    <!-- Alerta de erro de login -->
+    <div class="alerta-caixa erro" id="alertaLogin" style="display:none;" role="alert">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="alertaLoginTexto">Usuário ou senha inválidos.</span>
+    </div>
+
+    <form class="login-form" id="formLogin" novalidate>
+      <div class="form-grupo">
+        <label for="email">E-mail</label>
+        <div class="campo-icone">
+          <i class="fa-regular fa-envelope"></i>
+          <input class="entrada" type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="username" required>
+        </div>
+        <span class="mensagem-erro" id="erroEmail"></span>
+      </div>
+
+      <div class="form-grupo">
+        <label for="senha">Senha</label>
+        <div class="campo-icone senha-wrapper">
+          <i class="fa-solid fa-lock"></i>
+          <input class="entrada" type="password" id="senha" name="senha" placeholder="Digite sua senha" autocomplete="current-password" required style="padding-left:40px;">
+          <button type="button" class="alternar-senha" id="btnAlternarSenha" aria-label="Mostrar senha">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <span class="mensagem-erro" id="erroSenha"></span>
+      </div>
+
+      <div class="login-form__opcoes">
+        <label class="checkbox-lembrar">
+          <input type="checkbox" id="lembrarUsuario">
+          Lembrar usuário
+        </label>
+        <a href="#" id="linkEsqueciSenha">Esqueci a senha</a>
+      </div>
+
+      <button type="submit" class="btn btn-primario btn-bloco" id="btnEntrar">
+        <i class="fa-solid fa-right-to-bracket"></i> Entrar
+      </button>
+    </form>
+
+    <p class="login-card__rodape">
+      Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
+    </p>
+
+    <div class="login-card__contas-teste">
+      <strong>Contas de demonstração</strong><br>
+      Aluno: aluno@escola.com / aluno123<br>
+      Professor: professor@escola.com / prof123<br>
+      Administrador: admin@escola.com / admin123
+    </div>
+  </section>
+</main>
+
+<!-- Loading -->
+<div class="loading-fundo" id="loadingGlobal">
+  <div class="spinner"></div>
+</div>
+
+<!-- Container de toasts -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/banco.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
